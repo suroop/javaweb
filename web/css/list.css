@@ -1,0 +1,165 @@
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    align-items: center;
+}
+
+html {
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+}
+
+body {
+    position: relative;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+.box {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+.switch{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 99999;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border-radius: 50%;
+    transition: 0.4s;
+    cursor: pointer;
+}
+.switch:hover{
+    background-color: rgba(237, 231, 227, 0.2);
+}
+.switch i{
+    font-size: 25px;
+    line-height: 50px;
+    padding: 0 12.5px;
+}
+img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    min-height: 800px;
+    min-width: 1000px;
+    height: auto;
+    width: 100%;
+    overflow-y: hidden;
+}
+.user-box {
+    background-color: rgba(255, 255, 255, 0.1);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50px;
+    width: 1000px;
+    height: 500px;
+}
+#opt{
+    width: 800px;
+    margin: 0 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+#opt .opt-item {
+    height: 75px;
+    display: flex;
+}
+#opt .select{
+    width: 550px;
+    flex-direction: row;
+    align-items: center;
+}
+#opt .select input{
+    border: none;
+    border-bottom: 1px solid white;
+    background-color: transparent;
+    outline: none;
+    width: 80px;
+    font-size: 16px;
+    color: white;
+    font-family:'FZShuTi';
+}
+#opt .select label{
+    color: white;
+    margin: 0 5px;
+}
+#opt .add{
+    width: 200px;
+    justify-content: center;
+    align-items: center;
+}
+#opt button{
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    font-size: 15px;
+    width: 90px;
+    height: 40px;
+    border-radius: 15px;
+    margin: 0 10px;
+    cursor: pointer;
+    outline: none;
+}
+#list{
+    width: 950px;
+    margin: 0 25px;
+    height: 300px;
+}
+#list table{
+    color: white;
+    width: 100%;
+    text-align: center;
+}
+#list table tr{
+    width: 100%;
+    height: 35px;
+}
+#list table td .btns button{
+    border-radius: 50px;
+    width: 30px;
+    height: 30px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+#tab{
+    width: 800px;
+    margin: 0 100px;
+    height: 100px;
+}
+#tab .Pagination{
+    width: 330px;
+    height: 50px;
+    padding: 25px 0;
+    margin:  0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#tab .Pagination button{
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    color: white;
+    font-size: 20px;
+    background-color: transparent;
+    border: none;
+}
+#tab .Pagination button:nth-child(1),
+#tab .Pagination button:nth-child(9) {
+    width: 40px;
+}
