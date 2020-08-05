@@ -19,8 +19,13 @@ public class DaoImpl implements UserDao {
     @Override
     public List<User> findAll() {
         //操作JDBC
-        String sql = "SELECT * FROM jdbcuser";
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<User>(User.class));
+        try {
+            String sql = "SELECT * FROM jdbcuser";
+            return jdbcTemplate.query(sql, new BeanPropertyRowMapper<User>(User.class));
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
@@ -30,12 +35,7 @@ public class DaoImpl implements UserDao {
     }
     @Override
     public User checkedAccount(String username) {
-        try {
-            String sql = "SELECT * FROM jdbcuser where username = ?";
-            return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<User>(User.class),username);
-        }catch (Exception e){
-            e.printStackTrace();
-            return null;
-        }
+        String sql = "SELECT * FROM jdbcuser where username = ?";
+        return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<User>(User.class),username);
     }
 }
