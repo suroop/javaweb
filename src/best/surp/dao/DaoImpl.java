@@ -30,7 +30,12 @@ public class DaoImpl implements UserDao {
     }
     @Override
     public User checkedAccount(String username) {
-        String sql = "SELECT * FROM jdbcuser where username = ?";
-        return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<User>(User.class),username);
+        try {
+            String sql = "SELECT * FROM jdbcuser where username = ?";
+            return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<User>(User.class),username);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
 }
