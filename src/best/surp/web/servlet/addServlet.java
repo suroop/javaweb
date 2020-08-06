@@ -16,18 +16,28 @@ import java.util.Map;
 
 @WebServlet("/addServlet")
 public class addServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         UserService userService = new ServiceImpl();
         User user = new User();
         //添加
-        Map<String, String[]> map = request.getParameterMap();
-        try {
-            BeanUtils.populate(user,map);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        }
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String name = request.getParameter("name");
+        String birthday = request.getParameter("birthday");
+        String gender = request.getParameter("gender");
+        String ident = request.getParameter("ident");
+        String phone = request.getParameter("phone");
+        String email = request.getParameter("email");
+        String age = request.getParameter("age");
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setName(name);
+        user.setBirthday(birthday);
+        user.setGender(gender);
+        user.setIdent(ident);
+        user.setPhone(phone);
+        user.setEmail(email);
+        user.setAge(Integer.parseInt(age));
         userService.add(user);
         //跳转
         response.sendRedirect("/userlistServlet");

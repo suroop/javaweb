@@ -28,6 +28,8 @@ public class loginServlet extends HttpServlet {
             String checkedcode = (String) request.getSession().getAttribute("CHECKCODE_SERVER");
             //如果验证码不正确
             if(!verification.equalsIgnoreCase(checkedcode)){
+                response.setCharacterEncoding("utf-8");
+                response.getWriter().write("<script>" +"$(document).ready(function(){$(\"#msg\").css(\"animation-name\",\"alertBox\");});</script>");
                 request.setAttribute("msg","验证码不正确");
                 request.getRequestDispatcher("/login.jsp").forward(request,response);
             }else{

@@ -70,13 +70,13 @@ public class DaoImpl implements UserDao {
 
     @Override
     public void update(User user) {
-        String sql = "UPDATE jdbcuser SET username = ? ,password = ? ,name = ? ,age = ? ,birthday = ? ,gender = ? ,ident = ? ,phone = ? ,email = ? where id = ?";
-        jdbcTemplate.update(sql,user.getUsername(),user.getPassword(),user.getName(),user.getAge(),user.getBirthday(),user.getGender(),user.getId(),user.getPhone(),user.getEmail(),user.getId());
+        String sql = "UPDATE jdbcuser SET username = ? ,password = ? ,name = ? ,birthday = ? ,gender = ? ,ident = ? ,phone = ? ,email = ? ,age = ? where id = ?";
+        jdbcTemplate.update(sql,user.getUsername(),user.getPassword(),user.getName(),user.getBirthday(),user.getGender(),user.getIdent(),user.getPhone(),user.getEmail(),user.getAge(),user.getId());
     }
 
     @Override
     public void add(User user) {
         String sql = "INSERT INTO jdbcuser VALUES (null,?,?,?,?,?,?,?,?,?)";
-        jdbcTemplate.update(sql,user.getUsername(),user.getPassword(),user.getName(),user.getAge(),user.getBirthday(),user.getGender(),user.getId(),user.getPhone(),user.getEmail());
+        jdbcTemplate.update(sql,user.getUsername(),user.getPassword(),user.getName(),user.getBirthday(),user.getGender(),user.getIdent(),user.getPhone(),user.getEmail(),user.getAge());
     }
 }

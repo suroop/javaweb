@@ -24,6 +24,14 @@
             });
         });
     </script>
+    <style>
+        .opt-item a{
+            color: white;
+        }
+        .btns a{
+            color: black;
+        }
+    </style>
 </head>
 <body>
 <div class="box">
@@ -33,23 +41,23 @@
         <form action="" method="POST">
             <div id="opt">
                 <div class="select opt-item">
-                    <label for="">用户名:</label>
-                    <input type="search">
-                    <label for="">姓名:</label>
-                    <input type="search">
-                    <label for="">邮箱:</label>
-                    <input type="search">
+                    <label for="search1">用户名:</label>
+                    <input type="search" id="search1">
+                    <label for="search2">姓名:</label>
+                    <input type="search" id="search2">
+                    <label for="search3">邮箱:</label>
+                    <input type="search" id="search3">
                     <button>select</button>
                 </div>
                 <div class="add opt-item">
-                    <a href="/add.jsp"><button>add</button></a>
+                    <button><a href="${pageContext.request.contextPath}/add.jsp">add</a></button>
                     <button>delete selected</button>
                 </div>
             </div>
             <div id="list">
                 <table border="0">
                     <tr>
-                        <th><input type="checkbox" name="" id="checked" disabled></th>
+                        <th><label for="checked"><input type="checkbox" name="" id="checked"></label></th>
                         <th>用户名</th>
                         <th>密码</th>
                         <th>姓名</th>
@@ -63,7 +71,7 @@
                     </tr>
                     <c:forEach items="${requestScope.users}" var="user">
                         <tr>
-                            <td><input type="checkbox" name="" id="check1"></td>
+                            <td><label for="checked"><input type="checkbox" name="" id="checked1"></label></td>
                             <td>${user.username}</td>
                             <td>${user.password}</td>
                             <td>${user.name}</td>
@@ -75,8 +83,8 @@
                             <td>${user.email}</td>
                             <td>
                                 <div class="btns">
-                                    <a href="/editServlet?id=${user.id}"><button><i class="fa fa-edit"></i></button></a>
-                                    <a href="/deleteServlet?id=${user.id}"><button>&times;</button></a>
+                                    <button><%--<i class="fa fa-edit"></i>--%><a href="${pageContext.request.contextPath}/editServlet?id=${user.id}">&divide;</a></button>
+                                    <button><a href="${pageContext.request.contextPath}/deleteServlet?id=${user.id}">&times;</a></button>
                                 </div>
                             </td>
                         </tr>

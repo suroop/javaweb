@@ -28,7 +28,7 @@
     <img src="./img/1521.png" alt="">
     <div class="user-box">
         <h2>Edit your information</h2>
-        <form action="/addServlet" method="POST" id="Form">
+        <form action="${pageContext.request.contextPath}/updateServlet?id=${sessionScope.user.id}" method="POST" id="Form">
             <div class="left-item item">
                 <div class="inputitem">
                     <label for="username">用户</label>
@@ -44,7 +44,7 @@
                 </div>
                 <div class="inputitem">
                     <label for="identify">身份</label>
-                    <input type="text" name="identify" id="identify" autocomplete="off" value="${sessionScope.user.ident}">
+                    <input type="text" name="ident" id="identify" autocomplete="off" value="${sessionScope.user.ident}">
                 </div>
             </div>
             <div class="right-item item">
@@ -55,19 +55,19 @@
                 <div class="inputitem radio">
                     <label >性别</label>
                     <c:if test="${sessionScope.user.gender == 'male'}">
-                        <input type="radio" name="age" id="radio1" value="女"><span>女</span>
-                        <input type="radio" name="age" id="radio2" value="男" checked><span>男</span>
-                        <input type="radio" name="age" id="radio3" value="保密" ><span>保密</span>
+                        <input type="radio" name="gender" id="radio1" value="female"><span>女</span>
+                        <input type="radio" name="gender" id="radio2" value="male" checked><span>男</span>
+                        <input type="radio" name="gender" id="radio3" value="secret" ><span>保密</span>
                     </c:if>
                     <c:if test="${sessionScope.user.gender == 'female'}">
-                        <input type="radio" name="age" id="radio1" value="女" checked><span>女</span>
-                        <input type="radio" name="age" id="radio2" value="男" ><span>男</span>
-                        <input type="radio" name="age" id="radio3" value="保密" ><span>保密</span>
+                        <input type="radio" name="gender" id="radio1" value="female" checked><span>女</span>
+                        <input type="radio" name="gender" id="radio2" value="male" ><span>男</span>
+                        <input type="radio" name="gender" id="radio3" value="secret" ><span>保密</span>
                     </c:if>
                     <c:if test="${sessionScope.user.gender == ''}">
-                        <input type="radio" name="age" id="radio1" value="女"><span>女</span>
-                        <input type="radio" name="age" id="radio2" value="男" ><span>男</span>
-                        <input type="radio" name="age" id="radio3" value="保密" checked><span>保密</span>
+                        <input type="radio" name="gender" id="radio1" value="female"><span>女</span>
+                        <input type="radio" name="gender" id="radio2" value="male" ><span>男</span>
+                        <input type="radio" name="gender" id="radio3" value="secret" checked><span>保密</span>
                     </c:if>
                 </div>
                 <div class="inputitem">

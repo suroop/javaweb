@@ -43,7 +43,7 @@
                 </div>
                 <div class="inputitem">
                     <label for="identify">身份</label>
-                    <input type="text" name="identify" id="identify" autocomplete="off">
+                    <input type="text" name="ident" id="identify" autocomplete="off">
                 </div>
             </div>
             <div class="right-item item">
@@ -53,9 +53,9 @@
                 </div>
                 <div class="inputitem radio">
                     <label for="gender">性别</label>
-                    <input type="radio" name="age" id="radio1" value="女"><span>女</span>
-                    <input type="radio" name="age" id="radio2" value="男"><span>男</span>
-                    <input type="radio" name="age" id="radio3" value="保密" checked><span>保密</span>
+                    <input type="radio" name="gender" id="radio1" value="female"><span>女</span>
+                    <input type="radio" name="gender" id="radio2" value="male"><span>男</span>
+                    <input type="radio" name="gender" id="radio3" value="secret" checked><span>保密</span>
                 </div>
                 <div class="inputitem">
                     <label for="birthday">生日</label>

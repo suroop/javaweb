@@ -221,30 +221,21 @@ input[type="submit"]{
     border-radius: 15px;
     z-index: 9999;
     position: absolute;
-    width: 400px;
-    height: 200px;
-    background-color: yellow;
-    top: -40%;
-    left: 50%;
+    top: 70%;
+    left: 78%;
     transform: translate(-50%,-50%);
+    animation-name: alertBox;
     animation-duration: 3s;
     animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
-    animation-iteration-count: 1;
+    animation-iteration-count: infinite;
+    height:50px;
+    width:200px;
 }
-@keyframes alertBox {
-    0%{
-        top:-40%;
-        height:50px;
-        width:100px;
-    }
-    50%{
-        top:40%;
-        height:250px;
-        width:500px;
-    }
-    100%{
-        top:-40%;
-        height:50px;
-        width:100px;
-    }
+.alert-box #msg{
+    text-align: center;
+    line-height: 50px;
+    color: white;
+    font-size: 10px;
+    font-family: 'SimHei',
+    sans-serif;
 }

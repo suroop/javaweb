@@ -39,7 +39,4 @@ $(document).ready(function () {
             "font-size": "17px"
         });
     });
-    if($("#msg").text()!=""){
-        $("#msg").css("animation-name","alertBox");
-    }
 });
