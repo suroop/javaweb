@@ -52,16 +52,16 @@
     <div class="switch"><i class="fa fa-exchange" style="color: white;"></i></div>
     <img src="./img/1440.png" alt="">
     <div class="user-box">
-        <form action="" method="POST" id="Form1">
+        <form action="${pageContext.request.contextPath}/userlistServlet?" method="POST" id="Form1">
             <div id="opt">
                 <div class="select opt-item">
                     <label for="search1">用户名:</label>
-                    <input type="search" id="search1">
+                    <input type="search" id="search1" autocomplete="off" name="selectedUsername" value="${requestScope.selectedUsername}">
                     <label for="search2">姓名:</label>
-                    <input type="search" id="search2">
+                    <input type="search" id="search2" autocomplete="off" name="selectedName" value="${requestScope.selectedName}">
                     <label for="search3">邮箱:</label>
-                    <input type="search" id="search3">
-                    <button>select</button>
+                    <input type="search" id="search3" autocomplete="off" name="selectedEmail" value="${requestScope.selectedEmail}">
+                    <input type="submit" form="Form1" value="select">
                 </div>
                 <div class="add opt-item">
                     <button id="opt-item1"><a href="${pageContext.request.contextPath}/add.jsp">add</a></button>
@@ -113,8 +113,8 @@
                     <%--如果当前页数不为1,则能回到首页 --%>
                     <%--如果当前页数不为1,则能前翻 --%>
                 <c:if test="${requestScope.bp.currentPage!=1}">
-                    <button id="begin"><a href="${pageContext.request.contextPath}/userlistServlet?toPage=1">&lt;&lt;</a></button>
-                    <button id="pageprev"><a href="${pageContext.request.contextPath}/userlistServlet?toPage=${requestScope.bp.currentPage-1}">&lt;</a></button>
+                    <button id="begin"><a href="${pageContext.request.contextPath}/userlistServlet?toPage=1&selectedUsername=${requestScope.selectedUsername}&selectedName=${requestScope.selectedName}&selectedEmail=${requestScope.selectedEmail}}">&lt;&lt;</a></button>
+                    <button id="pageprev"><a href="${pageContext.request.contextPath}/userlistServlet?toPage=${requestScope.bp.currentPage-1}&selectedUsername=${requestScope.selectedUsername}&selectedName=${requestScope.selectedName}&selectedEmail=${requestScope.selectedEmail}">&lt;</a></button>
                 </c:if>
                     <%--如果当前页数为1,则不能回到首页 --%>
                     <%--如果当前页数为1,则不能前翻 --%>
@@ -123,28 +123,28 @@
                     <button id="pageprev" disabled><a href="javascript:void(0)">&lt;</a></button>
                 </c:if>
                     <%--如果当前页数为前5页--%>
-                <c:if test="${requestScope.bp.currentPage<requestScope.bp.displayPage-requestScope.bp.halfPage}">
-                    <button id="page0"><a href="${pageContext.request.contextPath}/userlistServlet?tpPage=1">1</a></button>
-                    <button id="page1"><a href="${pageContext.request.contextPath}/userlistServlet?tpPage=2">2</a></button>
-                    <button id="page2"><a href="${pageContext.request.contextPath}/userlistServlet?tpPage=3">3</a></button>
-                    <button id="page3"><a href="${pageContext.request.contextPath}/userlistServlet?tpPage=4">4</a></button>
-                    <button id="page4"><a href="${pageContext.request.contextPath}/userlistServlet?tpPage=5">5</a></button>
+                <c:if test="${requestScope.bp.currentPage<requestScope.bp.displayPage-requestScope.bp.halfPage&&requestScope.bp.currentPage<requestScope.bp.displayPage}">
+                    <button id="page0"><a href="${pageContext.request.contextPath}/userlistServlet?toPage=1&selectedUsername=${requestScope.selectedUsername}&selectedName=${requestScope.selectedName}&selectedEmail=${requestScope.selectedEmail}">1</a></button>
+                    <button id="page1"><a href="${pageContext.request.contextPath}/userlistServlet?toPage=2&selectedUsername=${requestScope.selectedUsername}&selectedName=${requestScope.selectedName}&selectedEmail=${requestScope.selectedEmail}">2</a></button>
+                    <button id="page2"><a href="${pageContext.request.contextPath}/userlistServlet?toPage=3&selectedUsername=${requestScope.selectedUsername}&selectedName=${requestScope.selectedName}&selectedEmail=${requestScope.selectedEmail}">3</a></button>
+                    <button id="page3"><a href="${pageContext.request.contextPath}/userlistServlet?toPage=4&selectedUsername=${requestScope.selectedUsername}&selectedName=${requestScope.selectedName}&selectedEmail=${requestScope.selectedEmail}">4</a></button>
+                    <button id="page4"><a href="${pageContext.request.contextPath}/userlistServlet?toPage=5&selectedUsername=${requestScope.selectedUsername}&selectedName=${requestScope.selectedName}&selectedEmail=${requestScope.selectedEmail}">5</a></button>
                 </c:if>
                     <%--如果当前页数超过前5页--%>
                 <c:if test="${requestScope.bp.currentPage>=requestScope.bp.displayPage-requestScope.bp.halfPage&&requestScope.bp.currentPage+requestScope.bp.halfPage<requestScope.bp.totalPage}">
-                    <button id="page0"><a href="${pageContext.request.contextPath}/userlistServlet">${requestScope.bp.currentPage-2}</a></button>
-                    <button id="page1"><a href="${pageContext.request.contextPath}/userlistServlet">${requestScope.bp.currentPage-1}</a></button>
-                    <button id="page2"><a href="${pageContext.request.contextPath}/userlistServlet">${requestScope.bp.currentPage}</a></button>
-                    <button id="page3"><a href="${pageContext.request.contextPath}/userlistServlet">${requestScope.bp.currentPage+1}</a></button>
-                    <button id="page4"><a href="${pageContext.request.contextPath}/userlistServlet">${requestScope.bp.currentPage+2}</a></button>
+                    <button id="page0"><a href="${pageContext.request.contextPath}/userlistServlet?selectedUsername=${requestScope.selectedUsername}&selectedName=${requestScope.selectedName}&selectedEmail=${requestScope.selectedEmail}">${requestScope.bp.currentPage-2}</a></button>
+                    <button id="page1"><a href="${pageContext.request.contextPath}/userlistServlet?selectedUsername=${requestScope.selectedUsername}&selectedName=${requestScope.selectedName}&selectedEmail=${requestScope.selectedEmail}">${requestScope.bp.currentPage-1}</a></button>
+                    <button id="page2"><a href="${pageContext.request.contextPath}/userlistServlet?selectedUsername=${requestScope.selectedUsername}&selectedName=${requestScope.selectedName}&selectedEmail=${requestScope.selectedEmail}">${requestScope.bp.currentPage}</a></button>
+                    <button id="page3"><a href="${pageContext.request.contextPath}/userlistServlet?selectedUsername=${requestScope.selectedUsername}&selectedName=${requestScope.selectedName}&selectedEmail=${requestScope.selectedEmail}">${requestScope.bp.currentPage+1}</a></button>
+                    <button id="page4"><a href="${pageContext.request.contextPath}/userlistServlet?selectedUsername=${requestScope.selectedUsername}&selectedName=${requestScope.selectedName}&selectedEmail=${requestScope.selectedEmail}">${requestScope.bp.currentPage+2}</a></button>
                 </c:if>
                     <%--如果当前页数为末5页--%>
-                <c:if test="${requestScope.bp.currentPage+requestScope.bp.halfPage>=requestScope.bp.totalPage}">
-                    <button id="page0">${requestScope.bp.totalPage-4}</button>
-                    <button id="page1">${requestScope.bp.totalPage-3}</button>
-                    <button id="page2">${requestScope.bp.totalPage-2}</button>
-                    <button id="page3">${requestScope.bp.totalPage-1}</button>
-                    <button id="page4">${requestScope.bp.totalPage}</button>
+                <c:if test="${requestScope.bp.currentPage>=requestScope.bp.displayPage&&requestScope.bp.currentPage+requestScope.bp.halfPage>=requestScope.bp.totalPage}">
+                    <button id="page0"><a href="${pageContext.request.contextPath}/userlistServlet?toPage=${requestScope.bp.totalPage-4}&selectedUsername=${requestScope.selectedUsername}&selectedName=${requestScope.selectedName}&selectedEmail=${requestScope.selectedEmail}">${requestScope.bp.totalPage-4}</a></button>
+                    <button id="page1"><a href="${pageContext.request.contextPath}/userlistServlet?toPage=${requestScope.bp.totalPage-3}&selectedUsername=${requestScope.selectedUsername}&selectedName=${requestScope.selectedName}&selectedEmail=${requestScope.selectedEmail}">${requestScope.bp.totalPage-3}</a></button>
+                    <button id="page2"><a href="${pageContext.request.contextPath}/userlistServlet?toPage=${requestScope.bp.totalPage-2}&selectedUsername=${requestScope.selectedUsername}&selectedName=${requestScope.selectedName}&selectedEmail=${requestScope.selectedEmail}">${requestScope.bp.totalPage-2}</a></button>
+                    <button id="page3"><a href="${pageContext.request.contextPath}/userlistServlet?toPage=${requestScope.bp.totalPage-1}&selectedUsername=${requestScope.selectedUsername}&selectedName=${requestScope.selectedName}&selectedEmail=${requestScope.selectedEmail}">${requestScope.bp.totalPage-1}</a></button>
+                    <button id="page4"><a href="${pageContext.request.contextPath}/userlistServlet?toPage=${requestScope.bp.totalPage}&selectedUsername=${requestScope.selectedUsername}&selectedName=${requestScope.selectedName}&selectedEmail=${requestScope.selectedEmail}">${requestScope.bp.totalPage}</a></button>
                 </c:if>
                      <%--如果当前页数为末页,则不能回到末页 --%>
                      <%--如果当前页数为末页,则不能后翻 --%>
@@ -155,8 +155,8 @@
                     <%--如果当前页数不为末页,则能回到末页 --%>
                     <%--如果当前页数不为末页,则能后翻 --%>
                 <c:if test="${requestScope.bp.currentPage!=requestScope.bp.totalPage}">
-                    <button id="pagenext"><a href="${pageContext.request.contextPath}/userlistServlet?toPage=${requestScope.bp.currentPage+1}">&gt;</a></button>
-                    <button id="pagenext"><a href="${pageContext.request.contextPath}/userlistServlet?toPage=${requestScope.bp.totalPage}">&gt;&gt;</a></button>
+                    <button id="pagenext"><a href="${pageContext.request.contextPath}/userlistServlet?toPage=${requestScope.bp.currentPage+1}&selectedUsername=${requestScope.selectedUsername}&selectedName=${requestScope.selectedName}&selectedEmail=${requestScope.selectedEmail}">&gt;</a></button>
+                    <button id="pagenext"><a href="${pageContext.request.contextPath}/userlistServlet?toPage=${requestScope.bp.totalPage}&selectedUsername=${requestScope.selectedUsername}&selectedName=${requestScope.selectedName}&selectedEmail=${requestScope.selectedEmail}">&gt;&gt;</a></button>
                 </c:if>
             </div>
         </div>

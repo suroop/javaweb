@@ -12,6 +12,7 @@ import best.surp.dao.UserDao;
 import best.surp.domain.User;
 
 import java.util.List;
+import java.util.Map;
 
 public class ServiceImpl implements UserService {
     private UserDao userDao = new DaoImpl();
@@ -36,5 +37,9 @@ public class ServiceImpl implements UserService {
     @Override
     public int findPageCount() {return userDao.findPageCount(); }
     @Override
+    public int findPageCount(Map<String, Object> map) {return userDao.findPageCount(map);}
+    @Override
     public List<User> findByPage(int start, int row) {return userDao.findByPage(start,row); }
+    @Override
+    public List<User> findByPage(int start, int row, Map<String, Object> map) {return userDao.findByPage(start,row,map);}
 }

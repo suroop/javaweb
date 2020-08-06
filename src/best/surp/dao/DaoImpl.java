@@ -12,7 +12,9 @@ import best.surp.util.JDBCUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class DaoImpl implements UserDao {
     private JdbcTemplate jdbcTemplate = new JdbcTemplate(JDBCUtils.getDataSource());
@@ -87,8 +89,41 @@ public class DaoImpl implements UserDao {
     }
 
     @Override
+    public int findPageCount(Map<String, Object> map) {
+        String sql = "SELECT COUNT(*) FROM jdbcuser WHERE 1 = 1 ";
+        StringBuilder sb = new StringBuilder(sql);
+        List<Object> params = new ArrayList<>();
+        for (Map.Entry<String, Object> sse : map.entrySet()) {
+            if(sse.getValue()!=null&&""!=sse.getValue()){
+                sb.append(" and "+sse.getKey()+" like ? ");
+                params.add("%"+sse.getValue()+"%");
+            }
+        }
+        sql = sb.toString();
+        return jdbcTemplate.queryForObject(sql, Integer.class,params.toArray());
+    }
+
+    @Override
     public List<User> findByPage(int start, int row) {
         String sql = "SELECT * FROM jdbcuser LIMIT ? ,?";
         return jdbcTemplate.query(sql,new BeanPropertyRowMapper<User>(User.class),start,row);
+    }
+
+    @Override
+    public List<User> findByPage(int start, int row, Map<String, Object> map) {
+        String sql = "SELECT * FROM jdbcuser WHERE 1 = 1 ";
+        StringBuilder sb = new StringBuilder(sql);
+        List<Object> params = new ArrayList<>();
+        for (Map.Entry<String, Object> sse : map.entrySet()) {
+            if(sse.getValue()!=null&&""!=sse.getValue()){
+                sb.append(" and "+sse.getKey()+" like ? ");
+                params.add("%"+sse.getValue()+"%");
+            }
+        }
+        sb.append(" LIMIT ? ,?");
+        params.add(start);
+        params.add(row);
+        sql = sb.toString();
+        return jdbcTemplate.query(sql,new BeanPropertyRowMapper<User>(User.class),params.toArray());
     }
 }
