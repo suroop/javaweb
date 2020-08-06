@@ -33,4 +33,8 @@ public class ServiceImpl implements UserService {
     public User findSingle(int id) {return userDao.findSingle(id); }
     @Override
     public void add(User user) {userDao.add(user); }
+    @Override
+    public int findPageCount() {return userDao.findPageCount(); }
+    @Override
+    public List<User> findByPage(int start, int row) {return userDao.findByPage(start,row); }
 }

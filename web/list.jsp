@@ -35,11 +35,15 @@
         });
     </script>
     <style>
+
         .opt-item a{
             color: white;
         }
         .btns a{
             color: black;
+        }
+        #tab .Pagination a {
+            color: white;
         }
     </style>
 </head>
@@ -81,7 +85,7 @@
                         <th>邮箱</th>
                         <th>操作</th>
                     </tr>
-                    <c:forEach items="${requestScope.users}" var="user">
+                    <c:forEach items="${requestScope.bp.users}" var="user">
                         <tr>
                             <td><label for="checked1"><input type="checkbox" name="uid" class="uid1" id="checked1" value="${user.id}"></label></td>
                             <td>${user.username}</td>
@@ -106,15 +110,54 @@
             </form>
         <div id="tab">
             <div class="Pagination">
-                <button id="begin"> &lt; &lt;</button>
-                <button id="pageprev"> &lt;</button>
-                <button id="page1">2</button>
-                <button id="page2">3</button>
-                <button id="page3">4</button>
-                <button id="page4">5</button>
-                <button id="page5">6</button>
-                <button id="pagenext"> &gt;</button>
-                <button id="end">&gt;&gt;</button>
+                    <%--如果当前页数不为1,则能回到首页 --%>
+                    <%--如果当前页数不为1,则能前翻 --%>
+                <c:if test="${requestScope.bp.currentPage!=1}">
+                    <button id="begin"><a href="${pageContext.request.contextPath}/userlistServlet?toPage=1">&lt;&lt;</a></button>
+                    <button id="pageprev"><a href="${pageContext.request.contextPath}/userlistServlet?toPage=${requestScope.bp.currentPage-1}">&lt;</a></button>
+                </c:if>
+                    <%--如果当前页数为1,则不能回到首页 --%>
+                    <%--如果当前页数为1,则不能前翻 --%>
+                <c:if test="${requestScope.bp.currentPage==1}">
+                    <button id="begin" disabled><a href="javascript:void(0)">&lt;&lt;</a></button>
+                    <button id="pageprev" disabled><a href="javascript:void(0)">&lt;</a></button>
+                </c:if>
+                    <%--如果当前页数为前5页--%>
+                <c:if test="${requestScope.bp.currentPage<requestScope.bp.displayPage-requestScope.bp.halfPage}">
+                    <button id="page0"><a href="${pageContext.request.contextPath}/userlistServlet?tpPage=1">1</a></button>
+                    <button id="page1"><a href="${pageContext.request.contextPath}/userlistServlet?tpPage=2">2</a></button>
+                    <button id="page2"><a href="${pageContext.request.contextPath}/userlistServlet?tpPage=3">3</a></button>
+                    <button id="page3"><a href="${pageContext.request.contextPath}/userlistServlet?tpPage=4">4</a></button>
+                    <button id="page4"><a href="${pageContext.request.contextPath}/userlistServlet?tpPage=5">5</a></button>
+                </c:if>
+                    <%--如果当前页数超过前5页--%>
+                <c:if test="${requestScope.bp.currentPage>=requestScope.bp.displayPage-requestScope.bp.halfPage&&requestScope.bp.currentPage+requestScope.bp.halfPage<requestScope.bp.totalPage}">
+                    <button id="page0"><a href="${pageContext.request.contextPath}/userlistServlet">${requestScope.bp.currentPage-2}</a></button>
+                    <button id="page1"><a href="${pageContext.request.contextPath}/userlistServlet">${requestScope.bp.currentPage-1}</a></button>
+                    <button id="page2"><a href="${pageContext.request.contextPath}/userlistServlet">${requestScope.bp.currentPage}</a></button>
+                    <button id="page3"><a href="${pageContext.request.contextPath}/userlistServlet">${requestScope.bp.currentPage+1}</a></button>
+                    <button id="page4"><a href="${pageContext.request.contextPath}/userlistServlet">${requestScope.bp.currentPage+2}</a></button>
+                </c:if>
+                    <%--如果当前页数为末5页--%>
+                <c:if test="${requestScope.bp.currentPage+requestScope.bp.halfPage>=requestScope.bp.totalPage}">
+                    <button id="page0">${requestScope.bp.totalPage-4}</button>
+                    <button id="page1">${requestScope.bp.totalPage-3}</button>
+                    <button id="page2">${requestScope.bp.totalPage-2}</button>
+                    <button id="page3">${requestScope.bp.totalPage-1}</button>
+                    <button id="page4">${requestScope.bp.totalPage}</button>
+                </c:if>
+                     <%--如果当前页数为末页,则不能回到末页 --%>
+                     <%--如果当前页数为末页,则不能后翻 --%>
+                <c:if test="${requestScope.bp.currentPage==requestScope.bp.totalPage}">
+                    <button id="pagenext" disabled><a href="javascript:void(0)">&gt;</a></button>
+                    <button id="pagenext" disabled><a href="javascript:void(0)">&gt;&gt;</a></button>
+                </c:if>
+                    <%--如果当前页数不为末页,则能回到末页 --%>
+                    <%--如果当前页数不为末页,则能后翻 --%>
+                <c:if test="${requestScope.bp.currentPage!=requestScope.bp.totalPage}">
+                    <button id="pagenext"><a href="${pageContext.request.contextPath}/userlistServlet?toPage=${requestScope.bp.currentPage+1}">&gt;</a></button>
+                    <button id="pagenext"><a href="${pageContext.request.contextPath}/userlistServlet?toPage=${requestScope.bp.totalPage}">&gt;&gt;</a></button>
+                </c:if>
             </div>
         </div>
     </div>

@@ -12,4 +12,6 @@ public interface UserService {
     public void update(User user);
     public User findSingle(int id);
     public void add(User user);
+    public int findPageCount();
+    public List<User> findByPage(int start,int row);
 }

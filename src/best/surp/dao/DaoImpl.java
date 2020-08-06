@@ -79,4 +79,16 @@ public class DaoImpl implements UserDao {
         String sql = "INSERT INTO jdbcuser VALUES (null,?,?,?,?,?,?,?,?,?)";
         jdbcTemplate.update(sql,user.getUsername(),user.getPassword(),user.getName(),user.getBirthday(),user.getGender(),user.getIdent(),user.getPhone(),user.getEmail(),user.getAge());
     }
+
+    @Override
+    public int findPageCount() {
+        String sql = "SELECT COUNT(*) FROM jdbcuser";
+        return jdbcTemplate.queryForObject(sql, Integer.class);
+    }
+
+    @Override
+    public List<User> findByPage(int start, int row) {
+        String sql = "SELECT * FROM jdbcuser LIMIT ? ,?";
+        return jdbcTemplate.query(sql,new BeanPropertyRowMapper<User>(User.class),start,row);
+    }
 }
