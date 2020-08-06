@@ -50,4 +50,33 @@ public class DaoImpl implements UserDao {
         }
 
     }
+
+    @Override
+    public User findSingle(int id) {
+        try {
+            String sql = "SELECT * FROM jdbcuser where id = ?";
+            return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<User>(User.class),id);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public void delete(int id) {
+        String sql = "DELETE FROM jdbcuser WHERE id = ?";
+        jdbcTemplate.update(sql,id);
+    }
+
+    @Override
+    public void update(User user) {
+        String sql = "UPDATE jdbcuser SET username = ? ,password = ? ,name = ? ,age = ? ,birthday = ? ,gender = ? ,ident = ? ,phone = ? ,email = ? where id = ?";
+        jdbcTemplate.update(sql,user.getUsername(),user.getPassword(),user.getName(),user.getAge(),user.getBirthday(),user.getGender(),user.getId(),user.getPhone(),user.getEmail(),user.getId());
+    }
+
+    @Override
+    public void add(User user) {
+        String sql = "INSERT INTO jdbcuser VALUES (null,?,?,?,?,?,?,?,?,?)";
+        jdbcTemplate.update(sql,user.getUsername(),user.getPassword(),user.getName(),user.getAge(),user.getBirthday(),user.getGender(),user.getId(),user.getPhone(),user.getEmail());
+    }
 }

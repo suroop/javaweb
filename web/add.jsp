@@ -27,7 +27,7 @@
     <img src="./img/1263.png" alt="">
     <div class="user-box">
         <h2>Add user information</h2>
-        <form action="" method="POST" id="Form">
+        <form action="/addServlet" method="POST" id="Form">
             <div class="left-item item">
                 <div class="inputitem">
                     <label for="username">用户</label>
@@ -53,7 +53,6 @@
                 </div>
                 <div class="inputitem radio">
                     <label for="gender">性别</label>
-                    <!--<input type="text" name="gender" id="gender" autocomplete="off">-->
                     <input type="radio" name="age" id="radio1" value="女"><span>女</span>
                     <input type="radio" name="age" id="radio2" value="男"><span>男</span>
                     <input type="radio" name="age" id="radio3" value="保密" checked><span>保密</span>
@@ -69,7 +68,6 @@
                 <div class="inputitem">
                     <label for="email">邮箱</label>
                     <input type="text" name="email" id="email" autocomplete="off">
-
                 </div>
             </div>
             <input type="submit" value="submit" id="submit">

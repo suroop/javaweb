@@ -25,4 +25,12 @@ public class ServiceImpl implements UserService {
     public User checkedAccount(String username){
         return userDao.checkedAccount(username);
     }
+    @Override
+    public void delete(int id) {userDao.delete(id);}
+    @Override
+    public void update(User user) {userDao.update(user); }
+    @Override
+    public User findSingle(int id) {return userDao.findSingle(id); }
+    @Override
+    public void add(User user) {userDao.add(user); }
 }

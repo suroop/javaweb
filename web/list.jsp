@@ -42,7 +42,7 @@
                     <button>select</button>
                 </div>
                 <div class="add opt-item">
-                    <button>add</button>
+                    <a href="/add.jsp"><button>add</button></a>
                     <button>delete selected</button>
                 </div>
             </div>
@@ -75,8 +75,8 @@
                             <td>${user.email}</td>
                             <td>
                                 <div class="btns">
-                                    <button><i class="fa fa-edit"></i></button>
-                                    <button>&times;</button>
+                                    <a href="/editServlet?id=${user.id}"><button><i class="fa fa-edit"></i></button></a>
+                                    <a href="/deleteServlet?id=${user.id}"><button>&times;</button></a>
                                 </div>
                             </td>
                         </tr>
