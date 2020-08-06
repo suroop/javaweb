@@ -18,9 +18,19 @@
           integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
     <script src="./js/jquery-3.5.1.js"></script>
     <script>
+        function formSubmit() {
+            document.getElementById("Form2").submit();
+        }
         $(document).ready(function(){
             $(window).scroll(function () {
                 $(document).scrollTop(0);
+            });
+            $("#checked").click(function () {
+                if($(this).prop("checked")){
+                    $("input[type='checkbox']").prop("checked",true);
+                }else {
+                    $("input[type='checkbox']").prop("checked",false);
+                }
             });
         });
     </script>
@@ -38,7 +48,7 @@
     <div class="switch"><i class="fa fa-exchange" style="color: white;"></i></div>
     <img src="./img/1440.png" alt="">
     <div class="user-box">
-        <form action="" method="POST">
+        <form action="" method="POST" id="Form1">
             <div id="opt">
                 <div class="select opt-item">
                     <label for="search1">用户名:</label>
@@ -50,14 +60,16 @@
                     <button>select</button>
                 </div>
                 <div class="add opt-item">
-                    <button><a href="${pageContext.request.contextPath}/add.jsp">add</a></button>
-                    <button>delete selected</button>
+                    <button id="opt-item1"><a href="${pageContext.request.contextPath}/add.jsp">add</a></button>
+                    <input type="submit" id="opt-item2" form="Form2" value="delete selected">
                 </div>
             </div>
+        </form>
+        <form method="post" action="${pageContext.request.contextPath}/delSelectedServlet" id="Form2">
             <div id="list">
                 <table border="0">
                     <tr>
-                        <th><label for="checked"><input type="checkbox" name="" id="checked"></label></th>
+                        <th><label for="checked"><input type="checkbox" name="uid0" id="checked"></label></th>
                         <th>用户名</th>
                         <th>密码</th>
                         <th>姓名</th>
@@ -71,7 +83,7 @@
                     </tr>
                     <c:forEach items="${requestScope.users}" var="user">
                         <tr>
-                            <td><label for="checked"><input type="checkbox" name="" id="checked1"></label></td>
+                            <td><label for="checked1"><input type="checkbox" name="uid" class="uid1" id="checked1" value="${user.id}"></label></td>
                             <td>${user.username}</td>
                             <td>${user.password}</td>
                             <td>${user.name}</td>
@@ -83,7 +95,7 @@
                             <td>${user.email}</td>
                             <td>
                                 <div class="btns">
-                                    <button><%--<i class="fa fa-edit"></i>--%><a href="${pageContext.request.contextPath}/editServlet?id=${user.id}">&divide;</a></button>
+                                    <button><a href="${pageContext.request.contextPath}/editServlet?id=${user.id}">&divide;</a></button>
                                     <button><a href="${pageContext.request.contextPath}/deleteServlet?id=${user.id}">&times;</a></button>
                                 </div>
                             </td>
@@ -91,20 +103,20 @@
                     </c:forEach>
                 </table>
             </div>
-            <div id="tab">
-                <div class="Pagination">
-                    <button id="begin"> &lt; &lt;</button>
-                    <button id="pageprev"> &lt;</button>
-                    <button id="page1">2</button>
-                    <button id="page2">3</button>
-                    <button id="page3">4</button>
-                    <button id="page4">5</button>
-                    <button id="page5">6</button>
-                    <button id="pagenext"> &gt;</button>
-                    <button id="end">&gt;&gt;</button>
-                </div>
+            </form>
+        <div id="tab">
+            <div class="Pagination">
+                <button id="begin"> &lt; &lt;</button>
+                <button id="pageprev"> &lt;</button>
+                <button id="page1">2</button>
+                <button id="page2">3</button>
+                <button id="page3">4</button>
+                <button id="page4">5</button>
+                <button id="page5">6</button>
+                <button id="pagenext"> &gt;</button>
+                <button id="end">&gt;&gt;</button>
             </div>
-        </form>
+        </div>
     </div>
 </div>
 </body>

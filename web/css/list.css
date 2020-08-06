@@ -102,17 +102,20 @@ img {
     justify-content: center;
     align-items: center;
 }
-#opt button{
+#opt input[type="submit"],#opt button{
     background-color: transparent;
     border: 2px solid white;
     color: white;
     font-size: 15px;
-    width: 90px;
+    width: 100px;
     height: 40px;
     border-radius: 15px;
     margin: 0 10px;
     cursor: pointer;
     outline: none;
+}
+#opt .opt-item #opt-item2{
+    width: 180px;
 }
 #list{
     width: 950px;
